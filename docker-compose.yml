@@ -1,0 +1,39 @@
+version: '2.1'
+services:
+  gobgp1:
+    image: iscream/gobgp:2.0.0
+    command: ["gobgpd", "-f", "/etc/gobgp/gobgp1.conf"]
+    volumes:
+      - ./gobgp/conf/gobgp1.conf:/etc/gobgp/gobgp1.conf:ro
+    networks:
+      gobgp_net:
+        ipv4_address: 198.51.100.1
+
+  gobgp2:
+    image: iscream/gobgp:2.0.0
+    command: ["gobgpd", "-f", "/etc/gobgp/gobgp2.conf"]
+    volumes:
+      - ./gobgp/conf/gobgp2.conf:/etc/gobgp/gobgp2.conf:ro
+    networks:
+      gobgp_net:
+        ipv4_address: 198.51.100.2
+
+  client:
+    build: ./grpc_client
+    image: iscream/grpc-python:gobgp-2.0.0
+    tty: true
+    command: ["/bin/bash"]
+    volumes:
+      - ./grpc_client/src:/root/src
+    networks:
+      gobgp_net:
+        ipv4_address: 198.51.100.3
+
+networks:
+  gobgp_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 198.51.100.0/24
+          gateway: 198.51.100.254
