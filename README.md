@@ -1,6 +1,23 @@
 # gobgp-grpc-demos
 Python client gets information from GoBGP grpc server.
 
+## Topology
+
+```
+ -------        --------------
+|       |      |    gobgp1    |
+|       |------| 198.51.100.1 |
+|   B   |       --------------
+|   r   |       --------------
+|   i   |      |    gobgp2    |
+|   d   |------| 198.51.100.2 |
+|   g   |       --------------
+|   e   |       --------------
+|       |      |    client    |
+|       |------| 198.51.100.3 |
+ -------        --------------
+```
+
 ## Feature
 - Get neighbor
 
