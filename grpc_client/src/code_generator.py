@@ -5,7 +5,7 @@ protoc.main((
     '',
     '-I../protobuf/',
     '-I../proto',
-    '--python_out=.',
+    '--python_out=./gobgp',
     '--grpc_python_out=.',
     '../proto/gobgp.proto',
     '../proto/attribute.proto',
