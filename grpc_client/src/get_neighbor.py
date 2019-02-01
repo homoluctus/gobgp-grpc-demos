@@ -32,7 +32,11 @@ class Client(object):
         return self.__stub
 
 
-def get_neighbor_by_address(stub, address):
+def get_peers_by_address(stub, address):
+    """
+    Returns grpc peer message as a sequence.
+    """
+
     if not isinstance(address, str):
         raise TypeError('str object is required')
 
@@ -40,12 +44,16 @@ def get_neighbor_by_address(stub, address):
                 address=address,
                 enableAdvertised=False)
 
+    peers = []
     for response in stub.ListPeer(request):
-        print(response)
+        peers.append(response)
+
+    return peers
 
 
 if __name__ == '__main__':
     with Client(address='198.51.100.1:50051') as client:
-        get_neighbor_by_address(
-            client.stub, address='198.51.100.2'
-        )
+        peers_list = get_peers_by_address(
+            client.stub, address='198.51.100.2')
+
+        print(peers_list)
