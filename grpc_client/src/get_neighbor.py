@@ -1,5 +1,5 @@
 import gobgp_pb2
-from client import Client
+from client import run
 
 
 def get_peers_by_address(stub, address):
@@ -22,8 +22,8 @@ def get_peers_by_address(stub, address):
 
 
 if __name__ == '__main__':
-    with Client(server_address='198.51.100.1:50051') as client:
-        peers_list = get_peers_by_address(
-            client.stub, address='198.51.100.2')
+    res = run(server_address='198.51.100.1:50051',
+              callback=get_peers_by_address,
+              args=('198.51.100.2',))
 
-        print(peers_list)
+    print(res)
