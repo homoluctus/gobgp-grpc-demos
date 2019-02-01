@@ -3,15 +3,15 @@ import gobgp_pb2_grpc
 
 
 class Client(object):
-    def __init__(self, address):
+    def __init__(self, server_address):
         """
         Support context manager
         
-        :params address: Bind host address and port
+        :params server_address: gRPC server address included host and port
         """
 
         try:
-            self.__channel = grpc.insecure_channel(address)
+            self.__channel = grpc.insecure_channel(server_address)
             self.__stub = gobgp_pb2_grpc.GobgpApiStub(self.__channel)
         except grpc.RpcError:
             raise
