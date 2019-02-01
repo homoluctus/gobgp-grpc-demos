@@ -1,3 +1,4 @@
+import sys
 import grpc
 import gobgp_pb2_grpc
 
@@ -29,3 +30,23 @@ class Client(object):
     @property
     def stub(self):
         return self.__stub
+
+
+def run(server_address, callback, args=(), kwargs={}):
+    """
+    Returns values returned by callback function
+
+    :params server_address: gRPC serever address
+    :params callback: executable function or class
+    :params args,kwargs: arguments for callback
+    """
+    
+    with Client(server_address=server_address) as client:
+        try:
+            res = callback(client.stub, *args, **kwargs)
+        except grpc.RpcError as err:
+            print(err, file=sys.stderr)
+        except Exception as err:
+            print(err, file=sys.stderr)
+
+    return res
