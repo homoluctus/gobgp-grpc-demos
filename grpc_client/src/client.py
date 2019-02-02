@@ -37,7 +37,7 @@ def run(server_address, callback, args=(), kwargs={}):
     Returns values returned by callback function
 
     :params server_address: gRPC serever address
-    :params callback: executable function or class
+    :params callback: executable function or class (first argument must be 'stub')
     :params args,kwargs: arguments for callback
     """
     
