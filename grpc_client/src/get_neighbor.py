@@ -14,16 +14,10 @@ def get_peers_by_address(stub, address):
                 address=address,
                 enableAdvertised=False)
 
-    peers = []
     for response in stub.ListPeer(request):
-        peers.append(response)
-
-    return peers
-
+        print(response)
 
 if __name__ == '__main__':
-    ret = run(server_address='198.51.100.1:50051',
-              callback=get_peers_by_address,
-              args=('198.51.100.2',))
-
-    print(ret)
+    run(server_address='198.51.100.1:50051',
+        callback=get_peers_by_address,
+        args=('198.51.100.2',))
