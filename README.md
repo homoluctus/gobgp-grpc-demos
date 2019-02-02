@@ -20,6 +20,7 @@ Python client gets information from GoBGP grpc server.
 
 ## Feature
 - Get neighbor
+- Add path
 
 ## Usage
 
