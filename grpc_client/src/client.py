@@ -34,19 +34,17 @@ class Client(object):
 
 def run(server_address, callback, args=(), kwargs={}):
     """
-    Returns values returned by callback function
+    Run callback function
 
     :params server_address: gRPC serever address
     :params callback: executable function or class (first argument must be 'stub')
     :params args,kwargs: arguments for callback
     """
-    
-    with Client(server_address=server_address) as client:
-        try:
-            ret = callback(client.stub, *args, **kwargs)
-        except grpc.RpcError as err:
-            print(err, file=sys.stderr)
-        except Exception as err:
-            print(err, file=sys.stderr)
 
-    return ret
+    try:
+        with Client(server_address=server_address) as client:
+            callback(client.stub, *args, **kwargs)
+    except grpc.RpcError as err:
+        print(err, file=sys.stderr)
+    except Exception as err:
+        print(err, file=sys.stderr)
