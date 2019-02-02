@@ -43,10 +43,10 @@ def run(server_address, callback, args=(), kwargs={}):
     
     with Client(server_address=server_address) as client:
         try:
-            res = callback(client.stub, *args, **kwargs)
+            ret = callback(client.stub, *args, **kwargs)
         except grpc.RpcError as err:
             print(err, file=sys.stderr)
         except Exception as err:
             print(err, file=sys.stderr)
 
-    return res
+    return ret

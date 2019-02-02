@@ -22,8 +22,8 @@ def get_peers_by_address(stub, address):
 
 
 if __name__ == '__main__':
-    res = run(server_address='198.51.100.1:50051',
+    ret = run(server_address='198.51.100.1:50051',
               callback=get_peers_by_address,
               args=('198.51.100.2',))
 
-    print(res)
+    print(ret)
