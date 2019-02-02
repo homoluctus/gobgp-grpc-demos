@@ -1,4 +1,4 @@
-import gobgp_pb2
+from gobgp import gobgp_pb2
 from client import run
 
 

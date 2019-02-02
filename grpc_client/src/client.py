@@ -1,6 +1,6 @@
 import sys
 import grpc
-import gobgp_pb2_grpc
+from gobgp import gobgp_pb2_grpc
 
 
 class Client(object):

@@ -1,6 +1,5 @@
 import binascii
-import gobgp_pb2
-import attribute_pb2
+from gobgp import gobgp_pb2, attribute_pb2
 from google.protobuf import any_pb2
 from client import run
 
