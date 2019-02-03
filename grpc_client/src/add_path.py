@@ -18,7 +18,6 @@ def add_path(stub, table_type, path, vrf_id=None):
         print('FAILURE')
 
 
-
 def main():
     table_type = gobgp_pb2.GLOBAL
 
@@ -51,6 +50,7 @@ def main():
     run(server_address='198.51.100.1:50051',
         callback=add_path,
         args=(table_type, path))
+
 
 if __name__ == '__main__':
     main()

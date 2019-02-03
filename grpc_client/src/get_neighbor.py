@@ -17,6 +17,7 @@ def get_peers_by_address(stub, address):
     for response in stub.ListPeer(request):
         print(response)
 
+
 if __name__ == '__main__':
     run(server_address='198.51.100.1:50051',
         callback=get_peers_by_address,

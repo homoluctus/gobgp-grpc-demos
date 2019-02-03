@@ -12,6 +12,7 @@ protoc.main((
     '../proto/capability.proto'
 ))
 
+
 protoc.main((
     '',
     '-I../protobuf/google/protobuf',
