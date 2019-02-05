@@ -3,7 +3,7 @@ import grpc
 from gobgp import gobgp_pb2_grpc
 
 
-class Client(object):
+class GoBGPClient(object):
     def __init__(self, server_address):
         """
         Support context manager
@@ -13,7 +13,7 @@ class Client(object):
 
         try:
             self.__channel = grpc.insecure_channel(server_address)
-            self.__stub = gobgp_pb2_grpc.GobgpApiStub(self.__channel)
+            self.stub = gobgp_pb2_grpc.GobgpApiStub(self.__channel)
         except grpc.RpcError:
             raise
 
@@ -27,10 +27,6 @@ class Client(object):
     def channel(self):
         return self.__channel
 
-    @property
-    def stub(self):
-        return self.__stub
-
 
 def run(server_address, callback, args=(), kwargs={}):
     """
@@ -42,7 +38,7 @@ def run(server_address, callback, args=(), kwargs={}):
     """
 
     try:
-        with Client(server_address=server_address) as client:
+        with GoBGPClient(server_address=server_address) as client:
             callback(client.stub, *args, **kwargs)
     except grpc.RpcError as err:
         print(err, file=sys.stderr)
