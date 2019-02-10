@@ -42,7 +42,6 @@ def main():
 
         if ret:
             print('SUCESS\n')
-            print(path_handler.get_path())
         else:
             print('FAILURE')
 
