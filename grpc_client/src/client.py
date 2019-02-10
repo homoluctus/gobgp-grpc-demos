@@ -7,7 +7,7 @@ class GoBGPClient(object):
     def __init__(self, server_address):
         """
         Support context manager
-        
+
         :params server_address: gRPC server address included host and port
         """
 
@@ -33,7 +33,8 @@ def run(server_address, callback, args=(), kwargs={}):
     Run callback function
 
     :params server_address: gRPC serever address
-    :params callback: executable function or class (first argument must be 'stub')
+    :params callback: executable function or class
+                      (first argument must be 'stub')
     :params args,kwargs: arguments for callback
     """
 
