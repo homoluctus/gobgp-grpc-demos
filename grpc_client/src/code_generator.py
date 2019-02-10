@@ -11,14 +11,3 @@ protoc.main((
     '../proto/attribute.proto',
     '../proto/capability.proto'
 ))
-
-
-protoc.main((
-    '',
-    '-I../protobuf/google/protobuf',
-    '--python_out=./google/protobuf',
-    '--grpc_python_out=./google/protobuf',
-    '../protobuf/google/protobuf/any.proto',
-    '../protobuf/google/protobuf/empty.proto',
-    '../protobuf/google/protobuf/timestamp.proto',
-))
